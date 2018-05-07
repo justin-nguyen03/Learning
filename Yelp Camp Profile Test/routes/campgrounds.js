@@ -49,12 +49,12 @@ router.post("/", middleware.isLoggedIn, function(req, res){
       username: req.user.username
   }
   //var cost = req.body.cost;
-  geocoder.geocode(req.body.location, function (err, data) {
+  /*geocoder.geocode(req.body.location, function (err, data) {
     var lat = data.results[0].geometry.location.lat;
     var lng = data.results[0].geometry.location.lng;
     var location = data.results[0].formatted_address;
     var newCampground = {name: name, image: image, description: desc,author:author, location: location, lat: lat, lng: lng};
-    // Create a new campground and save to DB
+    // Create a new campground and save to DB */
     Campground.create(newCampground, function(err, newlyCreated){
         if(err){
             console.log(err);
@@ -64,7 +64,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
             res.redirect("/campgrounds");
         }
     });
-  });
+  //});
 });
 
 //NEW - show form to create new campground
@@ -98,7 +98,7 @@ router.get("/:id/edit", middleware.checkUserCampground, function(req, res){
     });
 });
 
-router.put("/:id", function(req, res){
+/*router.put("/:id", function(req, res){
   geocoder.geocode(req.body.location, function (err, data) {
     var lat = data.results[0].geometry.location.lat;
     var lng = data.results[0].geometry.location.lng;
@@ -115,7 +115,7 @@ router.put("/:id", function(req, res){
     });
   });
 });
-
+*/
 router.delete("/:id", function(req, res) {
   Campground.findByIdAndRemove(req.params.id, function(err, campground) {
     Comment.remove({

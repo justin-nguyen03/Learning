@@ -8,6 +8,7 @@ var express     = require("express"),
     flash        = require("connect-flash"),
     Campground  = require("./models/campground"),
     Comment     = require("./models/comment"),
+  //  Rec         = require("./models/rec"),
     User        = require("./models/user"),
     session = require("express-session"),
     seedDB      = require("./seeds"),
@@ -17,6 +18,7 @@ require('dotenv').load();
 
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
+    //recRoutes        = require("./routes/recs"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index")
     
@@ -55,6 +57,7 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
+//app.use("/campgrounds/:id/recs", recRoutes);
 
 app.set('port', (process.env.PORT || 3000));
 
